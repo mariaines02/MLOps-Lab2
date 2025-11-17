@@ -96,7 +96,8 @@ jobs:
             \"plan\": \"$PLAN\",
             \"ownerID\": \"$OWNER_ID\",
             \"serviceDetails\": {
-              \"dockerImage\": \"$DOCKER_IMAGE\"
+              \"dockerImage\": \"$DOCKER_IMAGE\",
+              \"runtime\": \"docker\"
             }
           }"
       - name: Update web service if exists
