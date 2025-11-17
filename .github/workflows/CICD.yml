@@ -51,6 +51,12 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_IMAGE }}
           file: ./Dockerfile
+      - name: Get Render ownerID
+        id: get_ownerID
+        run: |
+          OWNER_ID=$(curl -s -H "Authorization: Bearer $RENDER_API_KEY" \
+            https://api.render.com/v1/owners | jq -r '.[] | select(.type=="user") | .id')
+          echo "owner_id=$OWNER_ID" >> $GITHUB_OUTPUT
 
       - name: Check if web service exists on Render
         id: check_service
@@ -75,6 +81,7 @@ jobs:
             \"dockerImage\": \"$DOCKER_IMAGE\",
             \"region\": \"$REGION\",
             \"plan\": \"$PLAN\"
+            \"ownerID\": \"${{ steps.get_ownerID.outputs.owner_id }}\"
           }"
       - name: Update web ervice if exists
         if: steps.check_service.outputs.service_exists == 'true'
