@@ -54,9 +54,16 @@ jobs:
       - name: Get Render ownerID
         id: get_ownerID
         run: |
+          echo "Fetching Render owners..."
+          # Tomamos el primer owner disponible (user u organization)
           OWNER_ID=$(curl -s -H "Authorization: Bearer $RENDER_API_KEY" \
-          https://api.render.com/v1/owners | jq -r '.[] | select(.type=="user") | .id' | tr -d '\n')
+            https://api.render.com/v1/owners | jq -r '.[0].id' | tr -d '\n')
+          if [ -z "$OWNER_ID" ]; then
+            echo "ERROR: Could not determine Render ownerID"
+            exit 1
+          fi
           echo "owner_id=$OWNER_ID" >> $GITHUB_OUTPUT
+          echo "Owner ID detected: $OWNER_ID"
 
       - name: Check if web service exists on Render
         id: check_service
