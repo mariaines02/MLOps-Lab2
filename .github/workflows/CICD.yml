@@ -71,10 +71,13 @@ jobs:
           fi
       - name: Create web service on Render if not exists
         if: steps.check_service.outputs.service_exists == 'false'
-        env:
-          OWNER_ID: ${{ steps.get_ownerID.outputs.owner_id }}
         run: |
-          echo "$OWNER_ID"
+          OWNER_ID="${{ steps.get_ownerID.outputs.owner_id }}"
+          echo "Owner ID detected: $OWNER_ID"
+          if [ -z "$OWNER_ID" ]; then
+            echo "ERROR: ownerID is empty"
+            exit 1
+          fi
           curl -X POST https://api.render.com/v1/services \
           -H "Authorization: Bearer $RENDER_API_KEY" \
           -H "Content-Type: application/json" \
