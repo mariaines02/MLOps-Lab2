@@ -90,6 +90,6 @@ async def calculate(op: str = Form(), a: float = Form(), b: float = Form()):
 #     return {"result": result}
 
 
-# Entry point (for direct execution only)
+# Entry point (for a direct execution only)
 if __name__ == "__main__":
     uvicorn.run("api.api:app", host="0.0.0.0", port=8000, reload=True)
