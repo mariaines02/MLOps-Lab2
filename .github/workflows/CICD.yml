@@ -22,12 +22,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build   # it is not executed if build fails
-    env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          SERVICE_NAME: "calculator-web-service"
-          DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
-          REGION: "frankfurt"
-          PLAN: "hobby"
     steps:
       - name: Checkout repository (with submodules)
         uses: actions/checkout@v4 
