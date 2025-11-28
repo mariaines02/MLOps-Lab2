@@ -9,8 +9,9 @@
 This project is the **continuation of MLOps Lab 1**. While Lab 1 focused on building the API and CLI, **Lab 2 focuses on automating the deployment** using Docker, GitHub Actions, Render, and Hugging Face Spaces.
 
 **Live Demo:**
-- **Frontend (Hugging Face):** [https://huggingface.co/spaces/mariaines02/MLOps-Lab2](https://huggingface.co/spaces/mariaines02/MLOps-Lab2)
-- **Backend (Render):** [https://mlops-lab2-demo.onrender.com](https://mlops-lab2-demo.onrender.com)
+- **Frontend (Hugging Face):** [https://huggingface.co/spaces/mariaines02/mlops-lab2](https://huggingface.co/spaces/mariaines02/mlops-lab2)
+- **Backend (Render):** [https://mlops-lab2-latest-7ffu.onrender.com](https://mlops-lab2-latest-7ffu.onrender.com)
+- **Docker Image:** [https://hub.docker.com/repository/docker/mariaines02/mlops-lab2/general](https://hub.docker.com/repository/docker/mariaines02/mlops-lab2/general)
 
 ---
 
