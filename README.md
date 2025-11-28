@@ -2,6 +2,8 @@
 
 [![CI/CD Pipeline](https://github.com/mariaines02/MLOps-Lab2/actions/workflows/cicd.yml/badge.svg)](https://github.com/mariaines02/MLOps-Lab2/actions/workflows/cicd.yml)
 
+
+<!-- Initial build trigger -->
 This project demonstrates a complete **Continuous Integration and Continuous Delivery (CI/CD)** pipeline for a Machine Learning application. It includes a FastAPI backend, a Gradio frontend, and automated deployment using Docker Hub, Render, and HuggingFace Spaces.
 
 ## 🎯 Assignment Objective
