@@ -1,20 +1,19 @@
 """
-FastAPI application for image prediction, preprocessing, and arithmetic operations.
+FastAPI application for image prediction and preprocessing.
 """
 
 import io
-from fastapi import FastAPI, File, UploadFile, HTTPException, Form, Request
+from fastapi import FastAPI, File, UploadFile, HTTPException, Request
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import uvicorn
 from logic.predictor import ImagePredictor
-from mylib.calculator import add, subtract, multiply, divide, power
 
 
 app = FastAPI(
     title="MLOps Lab API",
-    description="API for image classification (Lab 2) and calculator (Lab 1)",
+    description="API for image classification (Lab 2)",
     version="1.0.0",
 )
 
@@ -72,37 +71,7 @@ async def health():
         "version": "1.0.0",
     }
 
-
-# --- Lab 1: Calculator Endpoints ---
-
-@app.post("/calculate")
-async def calculate(op: str = Form(), a: float = Form(), b: float = Form()):
-    """
-    It performs an arithmetical operation according to the input parameters.
-    """
-    op = op.lower()
-
-    if op not in ["add", "subtract", "multiply", "divide", "power"]:
-        raise HTTPException(status_code=400, detail="Unvalid operation")
-
-    result = None
-    if op == "add":
-        result = add(a, b)
-    elif op == "subtract":
-        result = subtract(a, b)
-    elif op == "multiply":
-        result = multiply(a, b)
-    elif op == "divide":
-        if b == 0:
-            raise HTTPException(status_code=400, detail="Zero division not allowed")
-        result = divide(a, b)
-    elif op == "power":
-        result = power(a, b)
-
-    return {"result": result}
-
-
-# --- Lab 2: Image Classification Endpoints ---
+#  Image Classification Endpoints ---
 
 @app.post("/predict", response_model=PredictionResponse)
 async def predict_image(
